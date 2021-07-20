@@ -51,7 +51,7 @@ remote: Total 4984 (delta 158), reused 238 (delta 127), pack-reused 4684
 Receiving objects: 100% (4984/4984), 5.38 MiB | 1.58 MiB/s, done.
 Resolving deltas: 100% (3071/3071), done.
 ```
-1.  Installing Rust 
+2.  Installing Rust 
 ```shell
 $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh 
 info: downloading installer
@@ -98,11 +98,11 @@ To configure your current shell, run:
 source $HOME/.cargo/env
 $ source $HOME/ .cargo/env
 ```
-2.  Access OpenSK--Makerdiary repository
+3.  Access OpenSK--Makerdiary repository
 ```shell
 $ cd OpenSK--Makerdiary
 ```
-3.  Running the setup script
+4.  Running the setup script
 ```shell
 $./setup.sh
 Submodule 'third_party/libtock-rs' (https://github.com/tock/libtock-rs) registered for path 'third_party/libtock-rs'
