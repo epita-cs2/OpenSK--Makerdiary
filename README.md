@@ -11,6 +11,7 @@ Google has released an open-source implementation called OpenSK. This is firmwar
 
 ## Disclaimer
 This project is developped by Google, I advice you to always to check their original repository for more updates.
+In this repository I will provide an installation guide of OpenSK on Makerdiary nRF52840 MDK USB Dongle . 
 
 
 ### FIDO2
@@ -28,12 +29,7 @@ is work in progress in the develop branch and is tested less thoroughly.
 
 ### Cryptography
 
-Google is still in the process of making the
-[ARM&reg; CryptoCell-310](https://developer.arm.com/ip-products/security-ip/cryptocell-300-family)
-embedded in the
-[Nordic nRF52840 chip](https://infocenter.nordicsemi.com/index.jsp?topic=%2Fps_nrf52840%2Fcryptocell.html)
-work to get hardware-accelerated cryptography. In the meantime we implemented
-the required cryptography algorithms (ECDSA, ECC secp256r1, HMAC-SHA256 and
+The required cryptography algorithms (ECDSA, ECC secp256r1, HMAC-SHA256 and
 AES256) in Rust as a placeholder. Those implementations are research-quality
 code and haven't been reviewed. They don't provide constant-time guarantees and
 are not designed to be resistant against side-channel attacks.
