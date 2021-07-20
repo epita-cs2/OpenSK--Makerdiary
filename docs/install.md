@@ -263,11 +263,11 @@ Processing triggers for man-db (2.9.4-2) ...
 Processing triggers for kali-menu (2021.2.3) ...
 ```
 ### Installing nrfutil
-If you face an error during the above installation, proceed by the following command: 
+If you face an error while using `pip3 install nrfutil`, proceed by the following command: 
 ```shell 
 pip3 install nrfutil --user 
 ```
-Otherwise use:
+
 ```shell
 $ pip3 install nrfutil
 /usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
