@@ -31,7 +31,7 @@ following:
 *   python3 and pip (can be installed with the `python3-pip` package on Debian)
 *   the OpenSSL command line tool (can be installed with the `libssl-dev`
     package on Debian)
-*   nrfutil (can be installed by sudo pip3 install nrfutil or sudo pip3 install nrfutil --user )
+*   nrfutil (can be installed by `sudo pip3 install nrfutil` or `sudo pip3 install nrfutil --user` )
 
 
 The scripts provided in this project have been tested under Ubuntu 20.04 LTS on VMware Workstation v15.5.2. 
