@@ -25,7 +25,7 @@ Additionnaly, OpenSK supports other ways to flash your board:
 In order to compile and flash a working OpenSK firmware, you will need the
 following:
 
-*   [Ubuntu latest version] (https://ubuntu.com/download/desktop/thank-you?version=20.04.2.0&architecture=amd64#download) (Could be installed on VMware Workstation)
+*   [Ubuntu latest version](https://ubuntu.com/download/desktop/thank-you?version=20.04.2.0&architecture=amd64#download) (Could be installed on VMware Workstation)
 *   Install git (can be installed by sudo apt install git)
 *   rustup (can be installed with [Rustup](https://rustup.rs/))
 *   python3 and pip (can be installed with the `python3-pip` package on Debian)
