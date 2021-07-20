@@ -267,7 +267,7 @@ If you face an error during the above installation, proceed by the following com
 ```shell 
 pip3 install nrfutil --user 
 ```
-
+Otherwise use:
 ```shell
 $ pip3 install nrfutil
 /usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
