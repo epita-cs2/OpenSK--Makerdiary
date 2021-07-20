@@ -98,13 +98,13 @@ To configure your current shell, run:
 source $HOME/.cargo/env
 $ source $HOME/ .cargo/env
 ```
-1.  Access OpenSK--Makerdiary repository
+2.  Access OpenSK--Makerdiary repository
 ```shell
 $ cd OpenSK--Makerdiary
 ```
-1.  Running the setup script
+3.  Running the setup script
 ```shell
-$ ./setup.sh
+$./setup.sh
 Submodule 'third_party/libtock-rs' (https://github.com/tock/libtock-rs) registered for path 'third_party/libtock-rs'
 Submodule 'third party/tock' (https://github.com/tock/tock) registered for path 'third_party/tock'
 Cloning into '/home/epitac2/OpenSK/third_party/libtock-rs'...
@@ -197,20 +197,20 @@ The setup.sh script performs the following steps:
 
 1.  Make sure that the git submodules are checked out
 
-1.  Apply our patches that haven't yet been merged upstream to both
+2.  Apply our patches that haven't yet been merged upstream to both
     [Tock](https://github.com/tock/tock) and
     [libtock-rs](https://github.com/tock/libtock-rs)
 
-1.  Generate a self-signed certificate authority as well as a private key and a
+3.  Generate a self-signed certificate authority as well as a private key and a
     corresponding certificate for your OpenSK key signed by this CA. You will be
     able to replace them with your own certificate and private key.
 
-1.  Ensure that your Rust toolchain is using the same version that we tested
+4.  Ensure that your Rust toolchain is using the same version that we tested
     OpenSK with.
 
-1.  Install [tockloader](https://github.com/tock/tockloader).
+5.  Install [tockloader](https://github.com/tock/tockloader).
 
-1.  Ensure that the Rust toolchain can compile code for ARM devices.
+6.  Ensure that the Rust toolchain can compile code for ARM devices.
 
 
 ### Fix for a potential error
