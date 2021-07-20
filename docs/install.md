@@ -184,13 +184,13 @@ warning: be sure to add 'elfztab/bin' to your PATH to be able to run the install
 from cryptography.utils import int_from_bytes
 /usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
 from cryptography.utils import int_from_bytes
-Requirement already up-to-date: colorama in /home/nancyha/.local/lib/python3.8/site-packages (0.4.4)
-Requirement already up-to-date: tqdm in /home/nancyha/.local/lib/python3.8/site-packages (4.61.1)
-Requirement already up-to-date: cryptography in /home/nancyha/.local/lib/python3.8/site-packages (3.4.7)
-Requirement already up-to-date: fido2>=0.9.1 in /home/nancyha/.local/lib/python3.8/site-packages (0.9.1)
-Requirement already satisfied, skipping upgrade: cffi>=1.12 in /home/nancyha/.local/lib/python3.8/site-packages (from cryptography) (1.14.5)
-Requirement already satisfied, skipping upgrade: six in /home/nancyha/.local/lib/python3.8/site-packages (from fido2>=0.9.1) (1.16.0)
-Requirement already satisfied, skipping upgrade: pycparser in /home/nancyha/.local/lib/python3.8/site-packages (from cffi>=1.12->cryptography) (2.20)
+Requirement already up-to-date: colorama in /home/epitac2/.local/lib/python3.8/site-packages (0.4.4)
+Requirement already up-to-date: tqdm in /home/epitac2/.local/lib/python3.8/site-packages (4.61.1)
+Requirement already up-to-date: cryptography in /home/epitac2/.local/lib/python3.8/site-packages (3.4.7)
+Requirement already up-to-date: fido2>=0.9.1 in /home/epitac2/.local/lib/python3.8/site-packages (0.9.1)
+Requirement already satisfied, skipping upgrade: cffi>=1.12 in /home/epitac2/.local/lib/python3.8/site-packages (from cryptography) (1.14.5)
+Requirement already satisfied, skipping upgrade: six in /home/epitac2/.local/lib/python3.8/site-packages (from fido2>=0.9.1) (1.16.0)
+Requirement already satisfied, skipping upgrade: pycparser in /home/epitac2/.local/lib/python3.8/site-packages (from cffi>=1.12->cryptography) (2.20)
 ```
 
 The setup.sh script performs the following steps:
