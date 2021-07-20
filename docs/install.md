@@ -2,103 +2,198 @@
 
 # Installation guide
 
-This document describes in details how to turn a Nordic nRF52840 board into a
+This document describes in details how to turn a Makerdiary nRF52840 MDK board into a
 working FIDO2 security key.
 
 ## Pre-requisite
 
 ### Hardware
 
-You will need one the following supported boards:
+You will need the following supported board:
 
-*   [Nordic nRF52840-DK](https://www.nordicsemi.com/Software-and-Tools/Development-Kits/nRF52840-DK)
-    development kit. This board is more convenient for development and debug
-    scenarios as the JTAG probe is already on the board.
-*   [Nordic nRF52840 Dongle](https://www.nordicsemi.com/Software-and-tools/Development-Kits/nRF52840-Dongle)
-    to have a more practical form factor.
-*   [Makerdiary nRF52840-MDK USB dongle](https://wiki.makerdiary.com/nrf52840-mdk/).
-*   [Feitian OpenSK dongle](https://feitiantech.github.io/OpenSK_USB/).
-
-In the case of the Nordic USB dongle, you may also need the following extra
-hardware:
-
-*   a [Segger J-Link](https://www.segger.com/products/debug-probes/j-link/) JTAG
-    probe.
-*   a
-    [TC2050 Tag-Connect programming cable](https://www.tag-connect.com/product/tc2050-idc-nl-10-pin-no-legs-cable-with-ribbon-connector).
-*   a [Tag-Connect TC2050 ARM2010](http://www.tag-connect.com/TC2050-ARM2010)
-    adaptor
-*   optionally a
-    [Tag-Connect TC2050 retainer clip](http://www.tag-connect.com/TC2050-CLIP)
-    to keep the spring loaded connector pressed to the PCB.
+*   [Makerdiary nRF52840-MDK USB dongle](https://makerdiary.com/blogs/news/getting-started-with-google-opensk).
 
 Additionnaly, OpenSK supports other ways to flash your board:
 
-*   [OpenOCD](http://openocd.org/).
-*   [Segger J-Link](https://www.segger.com/products/debug-probes/j-link/)
-    (default method).
-*   [pyOCD](https://pypi.org/project/pyocd/).
 *   [nrfutil](https://pypi.org/project/nrfutil/) for the USB dongle boards that
     supports it, which allows you to directly flash a working board over USB
     without additional hardware.
 
-This guide **does not** cover how to setup the JTAG probe and their related
-tools on your system.
 
 ### Software
 
 In order to compile and flash a working OpenSK firmware, you will need the
 following:
 
+*   [Ubuntu latest version] (https://ubuntu.com/download/desktop/thank-you?version=20.04.2.0&architecture=amd64#download) (Could be installed on VMware Workstation)
+*   Install git (can be installed by sudo apt install git)
 *   rustup (can be installed with [Rustup](https://rustup.rs/))
 *   python3 and pip (can be installed with the `python3-pip` package on Debian)
 *   the OpenSSL command line tool (can be installed with the `libssl-dev`
     package on Debian)
+*   nrfutil (can be installed by sudo pip3 install nrfutil or sudo pip3 install nrfutil --user )
 
-The scripts provided in this project have been tested under Linux and OS X. We
-haven't tested them on Windows and other platforms.
+
+The scripts provided in this project have been tested under Ubuntu 20.04 LTS on VMware Workstation v15.5.2. 
 
 ## Compiling the firmware
 
 ### Initial setup
 
-If you just cloned this repository, you need to run the following script
-(_output may differ_):
+1.  Clone git repository using
+```shell
+$ git clone https://github.com/google/OpenSK.git
+Cloning into 'OpenSK'...
+remote: Enumerating objects: 4984, done.
+remote: Counting objects: 100% (300/300), done.
+remote: Compressing objects: 100% (168/168), done.
+remote: Total 4984 (delta 158), reused 238 (delta 127), pack-reused 4684
+Receiving objects: 100% (4984/4984), 5.38 MiB | 1.58 MiB/s, done.
+Resolving deltas: 100% (3071/3071), done.
+```
+1.  Installing Rust 
+```shell
+$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh 
+info: downloading installer
+Welcome to Rust!
+This will download and install the official compiler for the Rust
+programming language, and its package manager, Cargo.
+Rustup metadata and toolchains will be installed into the Rustup
+home directory, located at:
+/home/epitac2/.rustup
+This can be modified with the RUSTUP_HOME environment variable.
+The Cargo home directory located at:
+/home/epitac2/.cargo
+This can be modified with the CARGO_HOME environment variable.
+The cargo, rustc, rustup and other commands will be added to
+Cargo's bin directory, located at:
+/home/epitac2/.cargo/bin
+This path will then be added to your PATH environment variable by
+modifying the profile files located at:
+/home/epitac2/. profile
+/home/epitac2/.bashrc
+You can uninstall at any time with rustup self uninstall and
+these changes will be reverted.
+Current installation options:
+default host triple: x86_64-unknown-linux-gnu
+default toolchain: stable (default)
+profile: default
+modify PATH variable: yes
+1) Proceed with installation (default)
+2) Customize installation
+3) Cancel installation
+>1
 
+info: profile set to 'default'
+info: default host triple is x86_64 - unknown-linux-gnu
+warning: Updating existing toolchain, profile choice will be ignored
+info: syncing channel updates for 'stable-x86_64-unknown-linux-gnu'
+info: default toolchain set to 'stable-x86_64 - unknown-linux-gnu'
+stable-x86_64-unknown-linux-gnu unchanged - rustc 1.53.0 (53cb7b09b 2021-06-17)
+Rust is installed now. Great!
+To get started you may need to restart your current shell.
+This would reload your PATH environment variable to include
+Cargo's bin directory ($HOME/.cargo/bin).
+To configure your current shell, run:
+source $HOME/.cargo/env
+$ source $HOME/ .cargo/env
+```
+1.  Access OpenSK--Makerdiary repository
+```shell
+$ cd OpenSK--Makerdiary
+```
+1.  Running the setup script
 ```shell
 $ ./setup.sh
-[-] Applying patch "01-persistent-storage.patch"... DONE.
-[-] Applying patch "02-usb.patch"... DONE.
-[-] Applying patch "03-app-memory.patch"... DONE.
-[-] Applying patch "04-rtt.patch"... DONE.
-[-] Applying patch "01-linked_list_allocator.patch"... DONE.
-[-] Applying patch "02-panic_console.patch"... DONE.
-[-] Applying patch "03-timer.patch"... DONE.
-[-] Applying patch "04-public_syscalls.patch"... DONE.
-[-] Applying patch "05-bigger_heap.patch"... DONE.
-[-] Applying patch "06-no_spin_allocator.patch"... DONE.
+Submodule 'third_party/libtock-rs' (https://github.com/tock/libtock-rs) registered for path 'third_party/libtock-rs'
+Submodule 'third party/tock' (https://github.com/tock/tock) registered for path 'third_party/tock'
+Cloning into '/home/epitac2/OpenSK/third_party/libtock-rs'...
+Cloning into '/home/epitac2/OpenSK/third_party/tock'...
+Submodule path 'third_party/libtock-rs': checked out '828c19de9292ddbca0e2da6a161c0c38124c5053'
+Submodule path 'third party/tock': checked out 'c5b7a4f2c89a8c067f0f5786788f4037b32329fd'
+[-] Copying additional boards to Tock... DONE.
+[-] Applying patch "01-persistent-storage.patch". DONE.
+[-] Applying patch "O2-usb.patch"... DONE.
+[-] Applying patch "03-usb-debugging.patch"... DONE.
+[-] Applying patch "04-additional-boards. patch"... DONE.
+[-] Applying patch "05-mpu-fix.patch"... DONE.
+[-] Applying patch "06-update-uicr.patch"... DONE.
+[-] Applying patch "07-firmware-protect.patch"... DONE.
 Signature ok
-subject=CN = Google OpenSK CA
+subject=CN = OpenSK CA
 Getting Private key
 Signature ok
-subject=CN = Google OpenSK Hacker Edition
-Getting CA Private Key
-info: syncing channel updates for 'nightly-2020-02-03-x86_64-unknown-linux-gnu'
-
-  nightly-2020-02-03-x86_64-unknown-linux-gnu unchanged - rustc 1.42.0-nightly (f43c34a13 2020-02-02)
-
-Requirement already up-to-date: tockloader in /usr/lib/python3/dist-packages/tockloader-1.4.0.dev0-py3.7.egg (1.4.0.dev0)
-Requirement already satisfied, skipping upgrade: argcomplete>=1.8.2 in /usr/lib/python3/dist-packages (from tockloader) (1.10.0)
-Requirement already satisfied, skipping upgrade: colorama>=0.3.7 in /usr/lib/python3/dist-packages (from tockloader) (0.3.7)
-Requirement already satisfied, skipping upgrade: crcmod>=1.7 in /usr/lib/python3/dist-packages (from tockloader) (1.7)
-Requirement already satisfied, skipping upgrade: pyserial>=3.0.1 in /usr/lib/python3/dist-packages (from tockloader) (3.4)
-Requirement already satisfied, skipping upgrade: pytoml>=0.1.11 in /usr/lib/python3/dist-packages (from tockloader) (0.1.21)
+subject=CN = OpenSK Hacker Edition
+Getting CA Private key
+info: syncing channel updates for nightly-2020-06-10-x86_64 - unknown-linux-gnu'
+nightly-2020-06-10-x86_64-unknown-linux-gnu unchanged rustc 1.46.0-nightly (feb3536eb 2020-06-09)
+info: checking for self-updates
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+Requirement already up-to-date: tockloader==1.5 in /home/epitac2/.local/lib/python3.8/site-packages (1.5.0)
+Requirement already up-to-date: six in /home/epitac2/.local/lib/python3.8/site-packages (1.16.0)
+Requirement already up-to-date: intelhex in /home/epitac2/.local/lib/python3.8/site-packages (2.3.0)
+Requirement already satisfied, skipping upgrade: argcomplete>=1.8.2 in /home/epitac2/.local/lib/python3.8/site-packages (from tockloader==1.5) (1.12.3)
+Requirement already satisfied, skipping upgrade: crcmod>=1.7 in /home/epitac2/.local/lib/python3.8/site-packages (from tockloader==1.5) (1.7)
+Requirement already satisfied, skipping upgrade: colorama>=0.3.7 in /home/epitac2/.local/lib/python3.8/site-packages (from tockloader==1.5) (0.4.4)
+Requirement already satisfied, skipping upgrade: pytoml>=0.1.11 in /home/epitac2/.local/lib/python3.8/site-packages (from tockloader==1.5) (0.1.21)
+Requirement already satisfied, skipping upgrade: pyserial>=3.0.1 in /home/epitac2/.local/lib/python3.8/site-packages (from tockloader==1.5) (3.5)
 info: component 'rust-std' for target 'thumbv7em-none-eabi' is up to date
-    Updating crates.io index
-     Ignored package `elf2tab v0.4.0` is already installed, use --force to override
+Updating crates.io index
+Installing elftab v0.6.0
+Compiling libc v0.2.97
+Compiling version_check v0.9.3
+Compiling proc-macro2 v1.0.27
+Compiling unicode-xid vo.2.2
+Compiling autocfg v1.0.1
+Compiling syn v1.0.73
+Compiling bitflags v1.2.1
+Compiling unicode-width vo.1.8
+Compiling unicode-segmentation v1.7.1
+Compiling strsim v0.8.0
+Compiling ansi_term vo.11.0
+Compiling cfg-if v1.0.0
+Compiling vec_map vo.8.2
+Compiling byteorder v0.5.3
+Compiling lazy_static v1.4.0
+Compiling proc-macro-error-attr v1.0.4
+Compiling proc-macro-error v1.0.4
+Compiling num-traits vo.2.14
+Compiling num-integer vo.1.44
+Compiling textwrap vo.11.0
+Compiling heck v0.3.3
+Compiling elf vo.0.10
+Compiling atty vo.2.14
+Compiling time vo.1.44
+Compiling xattr vo.2.2
+Compiling filetime vo.2.14
+Compiling quote v1.0.9
+Compiling clap v2.33.3
+Compiling tar v0.4.35
+Compiling chrono v0.4.19
+Compiling structopt-derive vo.4.14
+Compiling structopt vo.3.21
+Compiling elf2tab vo.6.0
+Finished release [optimized] target(s) in 3m 14s
+Installing elftab/bin/elf2tab
+Installed package 'elf2tab v0.6.0' (executable 'elfztab“)
+warning: be sure to add 'elfztab/bin' to your PATH to be able to run the installed binaries
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+Requirement already up-to-date: colorama in /home/nancyha/.local/lib/python3.8/site-packages (0.4.4)
+Requirement already up-to-date: tqdm in /home/nancyha/.local/lib/python3.8/site-packages (4.61.1)
+Requirement already up-to-date: cryptography in /home/nancyha/.local/lib/python3.8/site-packages (3.4.7)
+Requirement already up-to-date: fido2>=0.9.1 in /home/nancyha/.local/lib/python3.8/site-packages (0.9.1)
+Requirement already satisfied, skipping upgrade: cffi>=1.12 in /home/nancyha/.local/lib/python3.8/site-packages (from cryptography) (1.14.5)
+Requirement already satisfied, skipping upgrade: six in /home/nancyha/.local/lib/python3.8/site-packages (from fido2>=0.9.1) (1.16.0)
+Requirement already satisfied, skipping upgrade: pycparser in /home/nancyha/.local/lib/python3.8/site-packages (from cffi>=1.12->cryptography) (2.20)
 ```
 
-The script performs the following steps:
+The setup.sh script performs the following steps:
 
 1.  Make sure that the git submodules are checked out
 
@@ -116,6 +211,107 @@ The script performs the following steps:
 1.  Install [tockloader](https://github.com/tock/tockloader).
 
 1.  Ensure that the Rust toolchain can compile code for ARM devices.
+
+
+### Fix for a potential error
+```shell
+copying additional boards to Tock... DONE.
+[-] Applying patch "01-persistent-storage.patch" ... DONE.
+[-] Applying patch "02-usb.patch" ... DONE.
+[-] Applying patch "03-usb-debugging.patch" ... DONE.
+[-] Applying patch "04-additional-boards.patch" ... DONE.
+[-] Applying patch "05-mpu-fix.patch" DONE.
+[ - ] Applying patch "06-update-uicr.patch" ... DONE.
+[-] Applying patch "07-firmware-protect.patch" DONE.
+Signature ok
+subject=CN OpenSK CA
+Getting Private key
+Signature ok
+subject=CN = OpenSK Hacker Edition
+Getting CA Private Key
+tools/gen_key_materials.sh: line 93: uuidgen: command not found
+```
+
+```shell
+$ sudo apt install uuid-runtime
+Reading package lists ... Done
+Building dependency tree ... Done
+Reading state information ... Done
+The following New packages will be installed:
+uuid-runtime
+0 upgraded, 1 newly installed, 0 to remove and 16 not upgraded.
+Need to get 101 kB of archives.
+After this operation, 224 kB of additional disk space will be used.
+Get:1 http://archive-4.kali.org/kali kali-rolling/main amd64 uuid-runtime amd64 2.36.1-7 (101 kB]
+Fetched 101 kB in 1s (167 kB/s)
+Selecting previously unselected package uuid-runtime.
+(Reading database 272193 files and directories currently installed.)
+Preparing to unpack ... /uuid-runtime_2.36.1-7_amd64.deb ...
+Unpacking uuid-runtime (2.36.1-7) ...
+Setting up uuid-runtime (2.36.1-7) ...
+Adding group uuidd' (GID 143) ...
+Done.
+Warning: The home dir /run/uuidd you specified can't be accessed: No such file or directory
+Adding system user "uuidd' (UID 134) ...
+Adding new user "uuidd' (UID 134) with group "uuidd'
+Not creating home directory /run/uuidd'.
+update-rc.d: We have no instructions for the uuidd init script.
+update-rc.d: It looks like a non-network service, we enable it.
+Created symlink /etc/systemd/system/sockets.target.wants/uuidd.socket -> /lib/system/system/uuidd.socket.
+uuidd.service is disabled or a static unit, not starting it.
+Processing triggers for man-db (2.9.4-2) ...
+Processing triggers for kali-menu (2021.2.3) ...
+```
+### Installing nrfutil
+If you face an error during the above installation, proceed by the following command: ```shell pip3 install nrfutil --user ```
+
+```shell
+$ pip3 install nrfutil
+/usr/lib/python3/dist-packages/secretstorage/dhcrypto.py:15: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+/usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
+from cryptography.utils import int_from_bytes
+Collecting nrfutil
+Downloading nrfutil-6.1.0.tar.gz (842 kB)
+842 kB 4.5 MB/s
+Requirement already satisfied: click in /usr/lib/python3/dist-packages (from nofutil) (7.0)
+Requirement already satisfied: crcmod in /home/epitac2/.local/lib/python3.8/site-packages (from nrfutil) (1.7)
+Collecting ecdsa
+Downloading ecdsa -0.17.0-py2.py3-none-any.whl (119 kB)
+119 kB 3.5 MB/s
+Requirement already satisfied: intelhex in /home/epitac2/.local/lib/python3.8/site-packages (from nrfutil) (2.3.0)
+Collecting libusb1
+Downloading libusb1-1.9.2-py3-none-any.whl (58 kB)
+58 kB 3.0 MB/s
+Collecting pc_ble_driver_py>=0.14.2
+Downloading pc_ble driver py-0.15.0-cp38-cp38-manylinux2010_x86_64.whl (2.4 MB)
+2.4 MB 3.1 MB/s
+Collecting piccata
+Downloading piccata-2.0.1-py3-none-any.whl (21 kB)
+Requirement already satisfied: protobuf in /usr/lib/python3/dist-packages (from nofutil) (3.6.1)
+Requirement already satisfied: pyserial in /home/epitac2/.local/lib/python3.8/site-packages (from nrfutil) (3.5)
+Collecting pyspinel>=1.0.023
+Downloading pyspinel-1.0.3.tar.gz (58 kB)
+|| 58 KB 3.0 MB/s
+Requirement already satisfied: pyyaml in /usr/lib/python3/dist-packages (from nrfutil) (5.3.1)
+Requirement already satisfied: tqdm in /home/epitac2/.local/lib/python3.8/site-packages (from nrfutil) (4.61.1)
+Requirement already satisfied: six>=1.9.0 in /home/epitac2/local/lib/python3.8/site-packages (from ecdsa->ncfutil) (1.16.0)
+Collecting wrapt
+Downloading wrapt-1.12.1.tar.gz (27 kB)
+Building wheels for collected packages: nrfutil, pyspinel, wrapt
+Building wheel for nrfutil (setup.py) ... done
+Created wheel for nofutil: filename=nrfutil-6.1.0-py3-none-any.whl size=897463 sha256=fcd161350bdb458dbaaf7c8668ec51c9ac5d9f3483fe2a7d16d906c0c767d176
+Stored in directory: /home/epitac2/.cache/pip/wheels/f4/04/d2/ccb2f5afdfd03523f2769ce9c15984a96315a085b8c3be901a
+Building wheel for pyspinel (setup.py) ... done
+Created wheel for pyspinel: filename=pyspinel-1.0.3-py3-none-any.whl size=65036 sha256=0f789343091cba6637cb1525434c2c3972bee6119020330b7d5f68de9c3813cc
+Stored in directory: /home/epitac2/.cache/pip/wheels/01/a4/e6/d5556boca15a3edo 200ff7906a098ad1161e05ed801bbccf64
+Building wheel for wrapt (setup.py) ... done
+Created wheel for wrapt: filename=wrapt-1.12.1-cp38-cp38-linux_x86_64.whl size=78508 sha256=C46977093cf4c79ebd6ebfe0b749b3ee68c5a47ccc6cc25db79ec7df3f3b5011
+Stored in directory: /home/epitac2/.cache/pip/wheels/5f/fd/9e/b6cf5890494cb8efob5eaff72e5d55a70fb56316007d6dfe73
+Successfully built nrfutil pyspinel wrapt
+Installing collected packages: ecdsa, libusbi, wrapt, pc-ble-driver-py, piccata, pyspinel, nrfutil
+Successfully installed ecdsa -0.17.0 libusb1-1.9.2 nrfutil-6.1.0 pc-ble-driver-py-0.15.o piccata-2.0.1 pyspinel-1.0.3 wrapt-1.12.1
+```
 
 ### Replacing the certificates
 
@@ -144,133 +340,35 @@ into raw data that is then used by the Rust file `src/ctap/key_material.rs`.
 Our configuration script `tools/configure.py` is responsible for configuring
 an OpenSK device with the correct certificate and private key.
 
+
+
 ### Flashing a firmware
 
-#### Nordic nRF52840-DK board
-
-![Nordic development kit](img/devkit_annotated.jpg)
-
-1.  Connect a micro USB cable to the JTAG USB port.
+#### Makerdiary nRF52840-MDK board
 
 1.  Run our script for compiling/flashing Tock OS and OpenSK on your device
     (_output may differ_):
-
+    During this deployment you don't have to enter to DFU (Bootloader)
     ```shell
-    $ ./deploy.py --board=nrf52840dk --opensk
-        info: Updating rust toolchain to nightly-2020-02-03
-        info: syncing channel updates for 'nightly-2020-02-03-x86_64-unknown-linux-gnu'
-        info: checking for self-updates
-        info: component 'rust-std' for target 'thumbv7em-none-eabi' is up to date
-        info: Rust toolchain up-to-date
-        info: Building Tock OS for board nrf52840dk
-            Compiling tock-registers v0.5.0 (./third_party/tock/libraries/tock-register-interface)
-            Compiling tock-cells v0.1.0 (./third_party/tock/libraries/tock-cells)
-            Compiling enum_primitive v0.1.0 (./third_party/tock/libraries/enum_primitive)
-            Compiling tock_rt0 v0.1.0 (./third_party/tock/libraries/tock-rt0)
-            Compiling nrf52840dk v0.1.0 (./third_party/tock/boards/nordic/nrf52840dk)
-            Compiling kernel v0.1.0 (./third_party/tock/kernel)
-            Compiling cortexm v0.1.0 (./third_party/tock/arch/cortex-m)
-            Compiling nrf5x v0.1.0 (./third_party/tock/chips/nrf5x)
-            Compiling capsules v0.1.0 (./third_party/tock/capsules)
-            Compiling cortexm4 v0.1.0 (./third_party/tock/arch/cortex-m4)
-            Compiling nrf52 v0.1.0 (./third_party/tock/chips/nrf52)
-            Compiling nrf52840 v0.1.0 (./third_party/tock/chips/nrf52840)
-            Compiling components v0.1.0 (./third_party/tock/boards/components)
-            Compiling nrf52dk_base v0.1.0 (./third_party/tock/boards/nordic/nrf52dk_base)
-                Finished release [optimized + debuginfo] target(s) in 13.15s
-        info: Converting Tock OS file into a binary
-        info: Building OpenSK application
-            Finished release [optimized] target(s) in 0.02s
-        info: Generating Tock TAB file for application/example ctap2
-        info: Erasing all installed applications
-        All apps have been erased.
-        info: Flashing file third_party/tock/boards/nordic/nrf52840dk/target/thumbv7em-none-eabi/release/nrf52840dk.bin.
-        info: Flashing padding application
-        info: Installing Tock application ctap2
-        info: You're all set!
-    ```
-
-1.  Connect a micro USB cable to the device USB port.
-
-**Note**: Due to current limitations of our implementation and Tock, you may
-have to press the `BOOT/RESET` button, located next to the device USB port on
-the board in order to see your OpenSK device on your system.
-
-#### Nordic nRF52840 Dongle
-
-##### Using external programmer (JLink, OpenOCD, etc.)
-
-![Nordic dongle](img/dongle_front.jpg)
-
-1.  The JTAG probe used for programming won't provide power to the board.
-    Therefore you will need to use a USB-A extension cable to power the dongle
-    through its USB port.
-
-1.  Connect the TC2050 cable to the pads below the PCB:
-
-    ![Nordic dongle pads](img/dongle_pads.jpg)
-
-1.  You can use the retainer clip if you have one to avoid maintaining pressure
-    between the board and the cable:
-
-    ![Nordic dongle retainer clip](img/dongle_clip.jpg)
-
-1.  Depending on the programmer you're using, you may have to adapt the next
-    command line. Run our script for compiling/flashing Tock OS on your device
-    (_output may differ_):
-
-    ```shell
-    $ ./deploy.py os --board=nrf52840_dongle --programmer=jlink
-    info: Updating rust toolchain to nightly-2020-02-03
-    info: syncing channel updates for 'nightly-2020-02-03-x86_64-unknown-linux-gnu'
+    $ ./deploy.py --board=ncf52840_mdk_dfu --opensk --programmer=none
+    info: Updating rust toolchain to nightly-2020-06-10
+    info: syncing channel updates for 'nightly-2020-06-10-x86_64-unknown-linux-gnu'
     info: checking for self-updates
     info: component 'rust-std' for target 'thumbv7em-none-eabi' is up to date
     info: Rust toolchain up-to-date
-    info: Building Tock OS for board nrf52840_dongle
-        Compiling tock-cells v0.1.0 (./third_party/tock/libraries/tock-cells)
-        Compiling tock-registers v0.5.0 (./third_party/tock/libraries/tock-register-interface)
-        Compiling enum_primitive v0.1.0 (./third_party/tock/libraries/enum_primitive)
-        Compiling tock_rt0 v0.1.0 (./third_party/tock/libraries/tock-rt0)
-        Compiling nrf52840_dongle v0.1.0 (./third_party/tock/boards/nordic/nrf52840_dongle)
-        Compiling kernel v0.1.0 (./third_party/tock/kernel)
-        Compiling cortexm v0.1.0 (./third_party/tock/arch/cortex-m)
-        Compiling nrf5x v0.1.0 (./third_party/tock/chips/nrf5x)
-        Compiling capsules v0.1.0 (./third_party/tock/capsules)
-        Compiling cortexm4 v0.1.0 (./third_party/tock/arch/cortex-m4)
-        Compiling nrf52 v0.1.0 (./third_party/tock/chips/nrf52)
-        Compiling nrf52840 v0.1.0 (./third_party/tock/chips/nrf52840)
-        Compiling components v0.1.0 (./third_party/tock/boards/components)
-        Compiling nrf52dk_base v0.1.0 (./third_party/tock/boards/nordic/nrf52dk_base)
-            Finished release [optimized + debuginfo] target(s) in 11.72s
-    info: Converting Tock OS file into a binary
+    info: Building Tock os for board ncf52840_mdk_dfu
+    info: This is the version for the rustup toolchain manager, not the rustc compiler.
+    info: The currently active 'rustc version is rustc 1.45.0-nightly (fe10f1a49 2020-06-02)
+    Finished release [optimized + debuginfo] target(s) in 0.125
     info: Building OpenSK application
-        Finished release [optimized] target(s) in 0.02s
+    Finished release [optimized] target(s) in 0.12s
     info: Generating Tock TAB file for application/example ctap2
-    info: Erasing all installed applications
-    All apps have been erased.
-    info: Flashing file third_party/tock/boards/nordic/nrf52840_dongle/target/thumbv7em-none-eabi/release/nrf52840_dongle.bin.
-    info: Flashing padding application
-    info: Installing Tock application ctap2
-    info: You're all set!
+    info: Generating all-merged HEX file: target/ncf52840_mdk_dfu_merged.hex
     ```
 
-1.  Remove the programming cable and the USB-A extension cable.
 
-### Advanced installation
 
-Although flashing using a Segger JLink probe is the officially supported way,
-our tool, `deploy.py` also supports other methods:
-
-*   OpenOCD: `./deploy.py --board=nrf52840_dongle --opensk --programmer=openocd`
-*   pyOCD: `./deploy.py --board=nrf52840_dongle --opensk --programmer=pyocd`
-*   Nordic DFU: `./deploy.py --board=nrf52840_dongle --opensk
-    --programmer=nordicdfu`
-*   Custom: `./deploy.py --board=nrf52840_dongle --opensk --programmer=none`. In
-    this case, an IntelHex file will be created and how to program a board is
-    left to the user.
-
-If your board is already flashed with Tock OS, you may skip installing it:
-`./deploy.py --board=nrf52840dk --opensk --no-tockos`
+### Custom installation
 
 For more options, we invite you to read the help of our `deploy.py` script by
 running `./deploy.py --help`.
@@ -291,6 +389,62 @@ sudo udevadm control --reload
 
 Then, you will need to unplug and replug the key for the rule to trigger.
 
+## Convert IntelHex file to UF2
+```shell
+$ python3 uf2conv.py '/[path of OpenSK-Makerdiary]/target/nrf52840_mdk_dfu_merged.hex' -C -f OxADA52840
+Converting to uf2, output size: 780288, start address: 0x1000
+Wrote 780288 bytes to flash.uf2.
+$ ls
+flash.uf2 mergehex uf2conv.py
+```
+### Create a directory
+You have to be root in order to execute the below command. 
+```shell
+$ mkdir /mnt/mass storage
+```
+
+### Access bootloader
+Press and hold the button for 5 seconds, while plugged in. 
+
+### Check your USB partition name
+
+```shell
+$ dmesg
+```
+or 
+
+```shell
+$ lsusb
+```
+
+### Mounting the USB to a directory
+You have to be root in order to execute the below command.
+To know your usb partition name, you have to execute the command.
+
+```shell
+$ mount -t vfat /dev/sdb /mnt/mass storage/
+```
+
+### Installing the firmware
+#cp [path of the IntelHex image file]/[name of image].uf2 /mnt/mass storage/
+# lsusb
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 008: ID 1915:521f Nordic Semiconductor ASA VMware Virtual USB Mouse
+Bus 002 Device 003: ID Deof:0002 VMware, Inc. Virtual USB Hub
+Bus 002 Device 002: ID 0eof:0003 VMware, Inc. Virtual Mouse
+Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+
+
+## Successfull installation
+
+The name of the product changes from Makerdiary to OpenSK
+```shell
+$ dmesg 
+[ 3313.424703] usb 2-2.1: Product: OpenSK
+[ 3313.424714] usb 2-2.1: Manufacturer: Nordic Semiconductor ASA
+[ 3313.424724] usb 2-2.1: SerialNumber: v1.0
+[ 3313.600069] hid-generic 0003:1915:5217.0002: hiddevo,hidraw1: USB HID v1.10 Device [Nordic Semiconductor ASA OpenSK] on usb-0000:02:00.0-2.1/inputo
+```
 ## Troubleshooting
 
 To test whether the installation was successful, visit a
@@ -323,18 +477,3 @@ $ dmesg
 [XXX] hid-generic 0000:0000:0000.0000: hiddev0,hidraw0: USB HID v1.10 Device [Nordic Semiconductor ASA OpenSK] on usb-0000:00:00.0-00/input0
 ```
 
-### Mac OS X
-
-If you have issues with the demo website, the following commands should help you
-understand whether OpenSK was installed properly.
-
-When plugging in the USB key, you should see a similar line by using the `ioreg`
-tool:
-
-```shell
-$ ioreg -p IOUSB
-+-o Root  <class IORegistryEntry, id 0x100000100, retain 21>
-...
-  +-o AppleUSBXHCI Root Hub Simulation@14000000  <class AppleUSBRootHubDevice, id 0x100000a00, registered, matched, active, busy 0 (0 ms), retain 9>
-    +-o OpenSK@14400000  <class AppleUSBDevice, id 0x100003c04, registered, matched, active, busy 0 (0 ms), retain 13>
-```
