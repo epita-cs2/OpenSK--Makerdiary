@@ -10,7 +10,7 @@
 Google has released an open-source implementation called OpenSK. One can install this firmware in an USB key, transforming it into an operational key to implement FIDO or U2F.
 
 ## Disclaimer
-This project is developed by Google, We advice you to constantly keep checking their original repository for more updates.
+This project is developed by Google, We advice you to constantly keep checking their original repository https://github.com/google/OpenSK  for more updates.
 In this repository we will provide an installation guide of OpenSK on Makerdiary nRF52840 MDK USB Dongle . 
 
 
