@@ -430,12 +430,12 @@ $ mount -t vfat /dev/sdb /mnt/mass storage/
 ```
 
 ### Installing the firmware
-You have to be root to execute the below command.
+You have to be root to execute the below commands.
 ```shell
-# cp [path of the IntelHex image file]/[name of image].uf2 /mnt/mass storage/
+$ cp [path of the IntelHex image file]/[name of image].uf2 /mnt/mass storage/
 ```
 ```shell
-# lsusb
+$ lsusb
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 Bus 002 Device 008: ID 1915:521f Nordic Semiconductor ASA VMware Virtual USB Mouse
 Bus 002 Device 003: ID Deof:0002 VMware, Inc. Virtual USB Hub
