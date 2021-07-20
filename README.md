@@ -7,21 +7,11 @@
 [![Coverage Status](https://coveralls.io/repos/github/google/OpenSK/badge.svg?branch=stable)](https://coveralls.io/github/google/OpenSK?branch=stable)
 
 ## OpenSK
-
-This repository contains a Rust implementation of a
-[FIDO2](https://fidoalliance.org/fido2/) authenticator.
-
-We developed this as a [Tock OS](https://tockos.org) application and it has been
-successfully tested on the following boards:
-
-*   [Nordic nRF52840-DK](https://www.nordicsemi.com/Software-and-Tools/Development-Kits/nRF52840-DK)
-*   [Nordic nRF52840-dongle](https://www.nordicsemi.com/Software-and-Tools/Development-Kits/nRF52840-Dongle)
+Google has released an open-source implementation called OpenSK. This is firmware that you can install on your own USB key, transforming it into an operational key such as FIDO or U2F.
 
 ## Disclaimer
+This project is developped by Google, I advice you to always to check their original repository for more updates.
 
-This project is **proof-of-concept and a research platform**. It is **NOT**
-meant for a daily usage. It's still under development and as such comes with a
-few limitations:
 
 ### FIDO2
 
@@ -38,7 +28,7 @@ is work in progress in the develop branch and is tested less thoroughly.
 
 ### Cryptography
 
-We're currently still in the process on making the
+Google is still in the process of making the
 [ARM&reg; CryptoCell-310](https://developer.arm.com/ip-products/security-ip/cryptocell-300-family)
 embedded in the
 [Nordic nRF52840 chip](https://infocenter.nordicsemi.com/index.jsp?topic=%2Fps_nrf52840%2Fcryptocell.html)
