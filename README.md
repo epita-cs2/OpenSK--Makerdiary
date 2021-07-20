@@ -139,11 +139,6 @@ You can control the tool with the following parameters:
 cargo run --manifest-path tools/heapviz/Cargo.toml -- --logfile console.log --fps 50
 ```
 
-
-## Contributing
-
-See [Contributing.md](docs/contributing.md).
-
 ## Reporting a Vulnerability
 
 See [SECURITY.md](SECURITY.md).
