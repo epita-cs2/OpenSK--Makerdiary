@@ -263,7 +263,10 @@ Processing triggers for man-db (2.9.4-2) ...
 Processing triggers for kali-menu (2021.2.3) ...
 ```
 ### Installing nrfutil
-If you face an error during the above installation, proceed by the following command: ```shell pip3 install nrfutil --user ```
+If you face an error during the above installation, proceed by the following command: 
+```shell 
+pip3 install nrfutil --user 
+```
 
 ```shell
 $ pip3 install nrfutil
