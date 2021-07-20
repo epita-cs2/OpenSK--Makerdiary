@@ -351,6 +351,7 @@ an OpenSK device with the correct certificate and private key.
 
 1.  Run our script for compiling/flashing Tock OS and OpenSK on your device
     (_output may differ_):
+    
     During this deployment you don't have to enter to DFU (Bootloader)
     ```shell
     $ ./deploy.py --board=ncf52840_mdk_dfu --opensk --programmer=none
