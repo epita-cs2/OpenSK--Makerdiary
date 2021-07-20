@@ -394,6 +394,8 @@ sudo udevadm control --reload
 Then, you will need to unplug and replug the key for the rule to trigger.
 
 ## Convert IntelHex file to UF2
+Makerdiary has a UF2 bootloader. By a simple copy of the image file, the USB will be flashed. 
+
 ```shell
 $ python3 uf2conv.py '/[path of OpenSK-Makerdiary]/target/nrf52840_mdk_dfu_merged.hex' -C -f OxADA52840
 Converting to uf2, output size: 780288, start address: 0x1000
