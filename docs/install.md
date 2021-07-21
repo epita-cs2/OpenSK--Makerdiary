@@ -92,9 +92,9 @@ To configure your current shell, run:
 source $HOME/.cargo/env
 $ source $HOME/ .cargo/env
 ```
-3.  Access OpenSK--Makerdiary directory
+3.  Access OpenSK directory
 ```shell
-$ cd OpenSK--Makerdiary
+$ cd OpenSK
 ```
 4.  Running the setup script
 ```shell
