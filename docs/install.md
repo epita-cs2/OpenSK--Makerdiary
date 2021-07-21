@@ -236,7 +236,7 @@ uuid-runtime
 0 upgraded, 1 newly installed, 0 to remove and 16 not upgraded.
 Need to get 101 kB of archives.
 After this operation, 224 kB of additional disk space will be used.
-Get:1 http://archive-4.kali.org/kali kali-rolling/main amd64 uuid-runtime amd64 2.36.1-7 (101 kB]
+Get:1 http://cz.archive.ubuntu.com/ubuntu focal main  (101 kB]
 Fetched 101 kB in 1s (167 kB/s)
 Selecting previously unselected package uuid-runtime.
 (Reading database 272193 files and directories currently installed.)
