@@ -486,3 +486,12 @@ This indicates that the USB is UF2 bootloader, otherwise would be open DFU.
 $ lsusb
 Bus 002 Device 006: ID 239a: 0029 Adafruit nRF52840 MDK USB Dongle
 ```
+
+### LED status
+
+Led Behavior | Mode Type | Trigger Method 
+--- | --- | --- 
+Blue Led is breathing | Bootloader mode | Push the button while USB key is plugged for 5 seconds
+Blue Led is flashing | Bootloader mode | Flashing the firmware
+No led on | Working mode | Idle
+RGB color | Working mode | Wait for the user presence when receiving FIDO command
