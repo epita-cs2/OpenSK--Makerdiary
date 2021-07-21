@@ -508,4 +508,4 @@ Led Behavior | Mode Type | Trigger Method
 Blue Led is breathing | Bootloader mode | Push the button while USB key is plugged for 5 seconds
 Blue Led is flashing | Bootloader mode | Flashing the firmware
 No led on | Working mode | Idle
-RGB color | Working mode | Wait for the user presence when receiving FIDO command
+RGB led | Working mode | Wait for the user presence when receiving FIDO command
