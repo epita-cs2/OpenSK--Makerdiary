@@ -13,12 +13,6 @@ You will need the following supported board:
 
 *   [Makerdiary nRF52840-MDK USB dongle](https://makerdiary.com/blogs/news/getting-started-with-google-opensk).
 
-Additionnaly, OpenSK supports other ways to flash your board:
-
-*   [nrfutil](https://pypi.org/project/nrfutil/) for the USB dongle boards that
-    supports it, which allows you to directly flash a working board over USB
-    without additional hardware.
-
 
 ### Software
 
@@ -31,7 +25,7 @@ following:
 *   python3 and pip (can be installed with the `python3-pip` package on Debian)
 *   the OpenSSL command line tool (can be installed with the `libssl-dev`
     package on Debian)
-*   nrfutil (can be installed by `sudo pip3 install nrfutil` or `sudo pip3 install nrfutil --user` )
+*   [nrfutil](https://pypi.org/project/nrfutil/)(can be installed by `sudo pip3 install nrfutil` or `sudo pip3 install nrfutil --user` )
 
 
 The scripts provided in this project have been tested under Ubuntu 20.04 LTS on VMware Workstation v15.5.2. 
