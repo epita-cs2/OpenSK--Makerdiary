@@ -54,18 +54,18 @@ This will download and install the official compiler for the Rust
 programming language, and its package manager, Cargo.
 Rustup metadata and toolchains will be installed into the Rustup
 home directory, located at:
-/home/epitac2/.rustup
+/home/epitacs2/.rustup
 This can be modified with the RUSTUP_HOME environment variable.
 The Cargo home directory located at:
-/home/epitac2/.cargo
+/home/epitacs2/.cargo
 This can be modified with the CARGO_HOME environment variable.
 The cargo, rustc, rustup and other commands will be added to
 Cargo's bin directory, located at:
-/home/epitac2/.cargo/bin
+/home/epitacs2/.cargo/bin
 This path will then be added to your PATH environment variable by
 modifying the profile files located at:
-/home/epitac2/. profile
-/home/epitac2/.bashrc
+/home/epitacs2/. profile
+/home/epitacs2/.bashrc
 You can uninstall at any time with rustup self uninstall and
 these changes will be reverted.
 Current installation options:
@@ -101,8 +101,8 @@ $ cd OpenSK
 $./setup.sh
 Submodule 'third_party/libtock-rs' (https://github.com/tock/libtock-rs) registered for path 'third_party/libtock-rs'
 Submodule 'third party/tock' (https://github.com/tock/tock) registered for path 'third_party/tock'
-Cloning into '/home/epitac2/OpenSK/third_party/libtock-rs'...
-Cloning into '/home/epitac2/OpenSK/third_party/tock'...
+Cloning into '/home/epitacs2/OpenSK/third_party/libtock-rs'...
+Cloning into '/home/epitacs2/OpenSK/third_party/tock'...
 Submodule path 'third_party/libtock-rs': checked out '828c19de9292ddbca0e2da6a161c0c38124c5053'
 Submodule path 'third party/tock': checked out 'c5b7a4f2c89a8c067f0f5786788f4037b32329fd'
 [-] Copying additional boards to Tock... DONE.
@@ -126,14 +126,14 @@ info: checking for self-updates
 from cryptography.utils import int_from_bytes
 /usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
 from cryptography.utils import int_from_bytes
-Requirement already up-to-date: tockloader==1.5 in /home/epitac2/.local/lib/python3.8/site-packages (1.5.0)
-Requirement already up-to-date: six in /home/epitac2/.local/lib/python3.8/site-packages (1.16.0)
-Requirement already up-to-date: intelhex in /home/epitac2/.local/lib/python3.8/site-packages (2.3.0)
-Requirement already satisfied, skipping upgrade: argcomplete>=1.8.2 in /home/epitac2/.local/lib/python3.8/site-packages (from tockloader==1.5) (1.12.3)
-Requirement already satisfied, skipping upgrade: crcmod>=1.7 in /home/epitac2/.local/lib/python3.8/site-packages (from tockloader==1.5) (1.7)
-Requirement already satisfied, skipping upgrade: colorama>=0.3.7 in /home/epitac2/.local/lib/python3.8/site-packages (from tockloader==1.5) (0.4.4)
-Requirement already satisfied, skipping upgrade: pytoml>=0.1.11 in /home/epitac2/.local/lib/python3.8/site-packages (from tockloader==1.5) (0.1.21)
-Requirement already satisfied, skipping upgrade: pyserial>=3.0.1 in /home/epitac2/.local/lib/python3.8/site-packages (from tockloader==1.5) (3.5)
+Requirement already up-to-date: tockloader==1.5 in /home/epitacs2/.local/lib/python3.8/site-packages (1.5.0)
+Requirement already up-to-date: six in /home/epitacs2/.local/lib/python3.8/site-packages (1.16.0)
+Requirement already up-to-date: intelhex in /home/epitacs2/.local/lib/python3.8/site-packages (2.3.0)
+Requirement already satisfied, skipping upgrade: argcomplete>=1.8.2 in /home/epitacs2/.local/lib/python3.8/site-packages (from tockloader==1.5) (1.12.3)
+Requirement already satisfied, skipping upgrade: crcmod>=1.7 in /home/epitacs2/.local/lib/python3.8/site-packages (from tockloader==1.5) (1.7)
+Requirement already satisfied, skipping upgrade: colorama>=0.3.7 in /home/epitacs2/.local/lib/python3.8/site-packages (from tockloader==1.5) (0.4.4)
+Requirement already satisfied, skipping upgrade: pytoml>=0.1.11 in /home/epitacs2/.local/lib/python3.8/site-packages (from tockloader==1.5) (0.1.21)
+Requirement already satisfied, skipping upgrade: pyserial>=3.0.1 in /home/epitacs2/.local/lib/python3.8/site-packages (from tockloader==1.5) (3.5)
 info: component 'rust-std' for target 'thumbv7em-none-eabi' is up to date
 Updating crates.io index
 Installing elftab v0.6.0
@@ -178,13 +178,13 @@ warning: be sure to add 'elfztab/bin' to your PATH to be able to run the install
 from cryptography.utils import int_from_bytes
 /usr/lib/python3/dist-packages/secretstorage/util.py:19: CryptographyDeprecationWarning: int_from_bytes is deprecated, use int.from_bytes instead
 from cryptography.utils import int_from_bytes
-Requirement already up-to-date: colorama in /home/epitac2/.local/lib/python3.8/site-packages (0.4.4)
-Requirement already up-to-date: tqdm in /home/epitac2/.local/lib/python3.8/site-packages (4.61.1)
-Requirement already up-to-date: cryptography in /home/epitac2/.local/lib/python3.8/site-packages (3.4.7)
-Requirement already up-to-date: fido2>=0.9.1 in /home/epitac2/.local/lib/python3.8/site-packages (0.9.1)
-Requirement already satisfied, skipping upgrade: cffi>=1.12 in /home/epitac2/.local/lib/python3.8/site-packages (from cryptography) (1.14.5)
-Requirement already satisfied, skipping upgrade: six in /home/epitac2/.local/lib/python3.8/site-packages (from fido2>=0.9.1) (1.16.0)
-Requirement already satisfied, skipping upgrade: pycparser in /home/epitac2/.local/lib/python3.8/site-packages (from cffi>=1.12->cryptography) (2.20)
+Requirement already up-to-date: colorama in /home/epitacs2/.local/lib/python3.8/site-packages (0.4.4)
+Requirement already up-to-date: tqdm in /home/epitacs2/.local/lib/python3.8/site-packages (4.61.1)
+Requirement already up-to-date: cryptography in /home/epitacs2/.local/lib/python3.8/site-packages (3.4.7)
+Requirement already up-to-date: fido2>=0.9.1 in /home/epitacs2/.local/lib/python3.8/site-packages (0.9.1)
+Requirement already satisfied, skipping upgrade: cffi>=1.12 in /home/epitacs2/.local/lib/python3.8/site-packages (from cryptography) (1.14.5)
+Requirement already satisfied, skipping upgrade: six in /home/epitacs2/.local/lib/python3.8/site-packages (from fido2>=0.9.1) (1.16.0)
+Requirement already satisfied, skipping upgrade: pycparser in /home/epitacs2/.local/lib/python3.8/site-packages (from cffi>=1.12->cryptography) (2.20)
 ```
 
 The setup.sh script performs the following steps:
@@ -272,11 +272,11 @@ Collecting nrfutil
 Downloading nrfutil-6.1.0.tar.gz (842 kB)
 842 kB 4.5 MB/s
 Requirement already satisfied: click in /usr/lib/python3/dist-packages (from nofutil) (7.0)
-Requirement already satisfied: crcmod in /home/epitac2/.local/lib/python3.8/site-packages (from nrfutil) (1.7)
+Requirement already satisfied: crcmod in /home/epitacs2/.local/lib/python3.8/site-packages (from nrfutil) (1.7)
 Collecting ecdsa
 Downloading ecdsa -0.17.0-py2.py3-none-any.whl (119 kB)
 119 kB 3.5 MB/s
-Requirement already satisfied: intelhex in /home/epitac2/.local/lib/python3.8/site-packages (from nrfutil) (2.3.0)
+Requirement already satisfied: intelhex in /home/epitacs2/.local/lib/python3.8/site-packages (from nrfutil) (2.3.0)
 Collecting libusb1
 Downloading libusb1-1.9.2-py3-none-any.whl (58 kB)
 58 kB 3.0 MB/s
@@ -286,25 +286,25 @@ Downloading pc_ble driver py-0.15.0-cp38-cp38-manylinux2010_x86_64.whl (2.4 MB)
 Collecting piccata
 Downloading piccata-2.0.1-py3-none-any.whl (21 kB)
 Requirement already satisfied: protobuf in /usr/lib/python3/dist-packages (from nofutil) (3.6.1)
-Requirement already satisfied: pyserial in /home/epitac2/.local/lib/python3.8/site-packages (from nrfutil) (3.5)
+Requirement already satisfied: pyserial in /home/epitacs2/.local/lib/python3.8/site-packages (from nrfutil) (3.5)
 Collecting pyspinel>=1.0.023
 Downloading pyspinel-1.0.3.tar.gz (58 kB)
 || 58 KB 3.0 MB/s
 Requirement already satisfied: pyyaml in /usr/lib/python3/dist-packages (from nrfutil) (5.3.1)
-Requirement already satisfied: tqdm in /home/epitac2/.local/lib/python3.8/site-packages (from nrfutil) (4.61.1)
-Requirement already satisfied: six>=1.9.0 in /home/epitac2/local/lib/python3.8/site-packages (from ecdsa->ncfutil) (1.16.0)
+Requirement already satisfied: tqdm in /home/epitacs2/.local/lib/python3.8/site-packages (from nrfutil) (4.61.1)
+Requirement already satisfied: six>=1.9.0 in /home/epitacs2/local/lib/python3.8/site-packages (from ecdsa->ncfutil) (1.16.0)
 Collecting wrapt
 Downloading wrapt-1.12.1.tar.gz (27 kB)
 Building wheels for collected packages: nrfutil, pyspinel, wrapt
 Building wheel for nrfutil (setup.py) ... done
 Created wheel for nofutil: filename=nrfutil-6.1.0-py3-none-any.whl size=897463 sha256=fcd161350bdb458dbaaf7c8668ec51c9ac5d9f3483fe2a7d16d906c0c767d176
-Stored in directory: /home/epitac2/.cache/pip/wheels/f4/04/d2/ccb2f5afdfd03523f2769ce9c15984a96315a085b8c3be901a
+Stored in directory: /home/epitacs2/.cache/pip/wheels/f4/04/d2/ccb2f5afdfd03523f2769ce9c15984a96315a085b8c3be901a
 Building wheel for pyspinel (setup.py) ... done
 Created wheel for pyspinel: filename=pyspinel-1.0.3-py3-none-any.whl size=65036 sha256=0f789343091cba6637cb1525434c2c3972bee6119020330b7d5f68de9c3813cc
-Stored in directory: /home/epitac2/.cache/pip/wheels/01/a4/e6/d5556boca15a3edo 200ff7906a098ad1161e05ed801bbccf64
+Stored in directory: /home/epitacs2/.cache/pip/wheels/01/a4/e6/d5556boca15a3edo 200ff7906a098ad1161e05ed801bbccf64
 Building wheel for wrapt (setup.py) ... done
 Created wheel for wrapt: filename=wrapt-1.12.1-cp38-cp38-linux_x86_64.whl size=78508 sha256=C46977093cf4c79ebd6ebfe0b749b3ee68c5a47ccc6cc25db79ec7df3f3b5011
-Stored in directory: /home/epitac2/.cache/pip/wheels/5f/fd/9e/b6cf5890494cb8efob5eaff72e5d55a70fb56316007d6dfe73
+Stored in directory: /home/epitacs2/.cache/pip/wheels/5f/fd/9e/b6cf5890494cb8efob5eaff72e5d55a70fb56316007d6dfe73
 Successfully built nrfutil pyspinel wrapt
 Installing collected packages: ecdsa, libusbi, wrapt, pc-ble-driver-py, piccata, pyspinel, nrfutil
 Successfully installed ecdsa -0.17.0 libusb1-1.9.2 nrfutil-6.1.0 pc-ble-driver-py-0.15.o piccata-2.0.1 pyspinel-1.0.3 wrapt-1.12.1
