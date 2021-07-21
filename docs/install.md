@@ -348,7 +348,7 @@ an OpenSK device with the correct certificate and private key.
     
     During this deployment you don't have to enter to DFU (Bootloader)
     ```shell
-    $ ./deploy.py --board=ncf52840_mdk_dfu --opensk --programmer=none
+    $ ./deploy.py --board=nrf52840_mdk_dfu --opensk --programmer=none
     info: Updating rust toolchain to nightly-2020-06-10
     info: syncing channel updates for 'nightly-2020-06-10-x86_64-unknown-linux-gnu'
     info: checking for self-updates
