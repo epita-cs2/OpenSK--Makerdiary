@@ -452,7 +452,7 @@ $ dmesg
 ## Troubleshooting
 
 To test whether the installation was successful, visit a
-[demo website](https://webauthn.io/) [demo website 2](https://webauthn.me/)  and try to register and login.
+[demo website](https://webauthn.io/), [demo website 2](https://webauthn.me/)  and try to register and login.
 
 
 ### Linux
