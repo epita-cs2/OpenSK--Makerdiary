@@ -23,7 +23,7 @@ following:
 *   Install git (can be installed by sudo apt install git)
 *   rustup (can be installed with [Rustup](https://rustup.rs/))
 *   python3 and pip (can be installed with the `python3-pip` package on Debian)
-*   the OpenSSL command line tool (can be installed with the `libssl-dev`
+*   The OpenSSL command line tool (can be installed with the `libssl-dev`
     package on Debian)
 *   [nrfutil](https://pypi.org/project/nrfutil/) (can be installed by `sudo pip3 install nrfutil` or `sudo pip3 install nrfutil --user` )
 
@@ -92,7 +92,7 @@ To configure your current shell, run:
 source $HOME/.cargo/env
 $ source $HOME/ .cargo/env
 ```
-3.  Access OpenSK--Makerdiary repository
+3.  Access OpenSK--Makerdiary directory
 ```shell
 $ cd OpenSK--Makerdiary
 ```
