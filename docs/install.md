@@ -354,7 +354,7 @@ an OpenSK device with the correct certificate and private key.
     info: checking for self-updates
     info: component 'rust-std' for target 'thumbv7em-none-eabi' is up to date
     info: Rust toolchain up-to-date
-    info: Building Tock os for board ncf52840_mdk_dfu
+    info: Building Tock os for board nrf52840_mdk_dfu
     info: This is the version for the rustup toolchain manager, not the rustc compiler.
     info: The currently active 'rustc version is rustc 1.45.0-nightly (fe10f1a49 2020-06-02)
     Finished release [optimized + debuginfo] target(s) in 0.125
