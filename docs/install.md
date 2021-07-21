@@ -482,3 +482,9 @@ $ dmesg
 [XXX] hid-generic 0000:0000:0000.0000: hiddev0,hidraw0: USB HID v1.10 Device [Nordic Semiconductor ASA OpenSK] on usb-0000:00:00.0-00/input0
 ```
 
+When plugging in the USB key in bootloader mode (DFU mode), the following line should appear in `lsusb`.
+
+```shell
+$ lsusb
+Bus 002 Device 006: ID 239a: 0029 Adafruit nRF52840 MDK USB Dongle
+```
