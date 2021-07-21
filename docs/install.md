@@ -400,7 +400,7 @@ flash.uf2 mergehex uf2conv.py
 ### Create a directory
 You have to be root in order to execute the below command. 
 ```shell
-$ mkdir /mnt/mass storage
+$ mkdir /mnt/mass_storage
 ```
 
 ### Access bootloader
@@ -422,13 +422,13 @@ You have to be root in order to execute the below command.
 To know your usb partition name, you have to execute the command.
 
 ```shell
-$ mount -t vfat /dev/sdb /mnt/mass storage/
+$ mount -t vfat /dev/sdb /mnt/mass_storage/
 ```
 
 ### Installing the firmware
 You have to be root to execute the below commands.
 ```shell
-$ cp [path of the IntelHex image file]/[name of image].uf2 /mnt/mass storage/
+$ cp [path of the IntelHex image file]/[name of image].uf2 /mnt/mass_storage/
 ```
 ```shell
 $ lsusb
@@ -453,6 +453,7 @@ $ dmesg
 
 To test whether the installation was successful, visit a
 [demo website](https://webauthn.io/) and try to register and login.
+[demo website 2](https://webauthn.me/) and try to register and login. 
 
 ### Linux
 
