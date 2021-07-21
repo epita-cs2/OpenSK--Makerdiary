@@ -484,6 +484,7 @@ This indicates that the USB is UF2 bootloader, otherwise would be open DFU.
 
 ```shell
 $ lsusb
+...
 Bus 002 Device 006: ID 239a: 0029 Adafruit nRF52840 MDK USB Dongle
 ```
 
