@@ -446,6 +446,19 @@ The name of the product changes from Makerdiary to OpenSK
 $ dmesg 
 [ 3313.424703] usb 2-2.1: Product: OpenSK
 ```
+
+## Reset submodules and git repository
+To reset the local directory on your computer, execute the script `reset.sh`.
+Access the OpenSK directory. 
+```shell
+$ ./reset.sh 
+```
+
+## Remove pin code and private keys
+```shell
+$ ./deploy.py --board=nrf52840_mdk_dfu --opensk --programmer=none --clear-storage
+```
+
 ## Troubleshooting
 
 To test whether the installation was successful, visit a
