@@ -361,7 +361,7 @@ an OpenSK device with the correct certificate and private key.
     info: Building OpenSK application
     Finished release [optimized] target(s) in 0.12s
     info: Generating Tock TAB file for application/example ctap2
-    info: Generating all-merged HEX file: target/ncf52840_mdk_dfu_merged.hex
+    info: Generating all-merged HEX file: target/nrf52840_mdk_dfu_merged.hex
     ```
 
 
