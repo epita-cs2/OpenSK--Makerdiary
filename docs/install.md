@@ -483,6 +483,7 @@ $ dmesg
 ```
 
 When plugging in the USB key in bootloader mode (DFU mode), the following line should appear in `lsusb`.
+This indicates that the USB is UF2 bootloader, otherwise would be open DFU. 
 
 ```shell
 $ lsusb
