@@ -445,9 +445,6 @@ The name of the product changes from Makerdiary to OpenSK
 ```shell
 $ dmesg 
 [ 3313.424703] usb 2-2.1: Product: OpenSK
-[ 3313.424714] usb 2-2.1: Manufacturer: Nordic Semiconductor ASA
-[ 3313.424724] usb 2-2.1: SerialNumber: v1.0
-[ 3313.600069] hid-generic 0003:1915:5217.0002: hiddevo,hidraw1: USB HID v1.10 Device [Nordic Semiconductor ASA OpenSK] on usb-0000:02:00.0-2.1/inputo
 ```
 ## Troubleshooting
 
